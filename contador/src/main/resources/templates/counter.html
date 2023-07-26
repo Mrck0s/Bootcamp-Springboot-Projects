@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contador de Visitas</title>
+</head>
+<body>
+<h1>Contador de Visitas: <span th:text="${counter}">num</span></h1>
+<a th:href="@{/reset}">Reiniciar Contador</a>
+<a th:href="@{/}">Volver al index</a>
+</body>
+</html>
