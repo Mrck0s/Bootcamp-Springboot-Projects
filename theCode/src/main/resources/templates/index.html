@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Ingrese el código para acceder:</h1>
+<form method="post" action="/checkCode">
+    <input type="text" name="code" required>
+    <button type="submit">Acceder</button>
+</form>
+<p th:if="${param.error}">Entrena Más Duro</p>
+</body>
+</html>
