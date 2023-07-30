@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Librería de libros</title>
+</head>
+<body>
+<h1>Librería de libros</h1>
+
+<h2>Agregar un nuevo libro</h2>
+<form th:action="@{/api/books}" method="post">
+    <label for="title">Título:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="description">Descripción:</label>
+    <input type="text" id="description" name="description" required>
+    <br>
+    <label for="language">Lenguaje:</label>
+    <input type="text" id="language" name="language" required>
+    <br>
+    <label for="pages">Número de Páginas:</label>
+    <input type="text" id="pages" name="pages" required>
+    <input type="submit" value="Agregar libro">
+</form>
+
+<h2>Lista de libros</h2>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Lenguaje</th>
+        <th>Páginas</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.description}"></td>
+        <td th:text="${book.language}"></td>
+        <td th:text="${book.numberOfPages}"></td>
+    </tr>
+</table>
+</body>
+</html>
