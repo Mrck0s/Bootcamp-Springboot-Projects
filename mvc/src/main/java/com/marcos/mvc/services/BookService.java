@@ -5,6 +5,7 @@ import com.marcos.mvc.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -27,6 +28,7 @@ public class BookService {
         Optional<Books> optionalBook = bookRepository.findById(id);
         return optionalBook.orElse(null);
     }
+
     public void updateBook(Books book) {
         Optional<Books> existingBook = bookRepository.findById(book.getId());
         if (existingBook.isPresent()) {
@@ -41,7 +43,11 @@ public class BookService {
     }
 
     public void deleteBook(Long id) {
-        bookRepository.deleteById(id);
+        if (bookRepository.existsById(id)) {
+            bookRepository.deleteById(id);
+        } else {
+            throw new NoSuchElementException("No se encontró ningún libro con el ID proporcionado.");
+        }
+
     }
 }
-

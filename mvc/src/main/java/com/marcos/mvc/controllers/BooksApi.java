@@ -2,7 +2,6 @@ package com.marcos.mvc.controllers;
 
 import com.marcos.mvc.models.Books;
 import com.marcos.mvc.services.BookService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,12 +51,11 @@ public class BooksApi {
             bookService.updateBook(book);
             return "redirect:/";
         } else {
-            return null;
+            return "";
         }
     }
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") Long id) {
+    @DeleteMapping("/api/books/{id}")
+    public void destroy(@PathVariable("id") Long id) {
         bookService.deleteBook(id);
     }
 }

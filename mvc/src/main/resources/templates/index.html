@@ -3,56 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Librería</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-<h1>Librería</h1>
+<div class="app-container">
+    <h1 class="main-title">Librería</h1>
 
-<h2>Libros Disponibles</h2>
-<table>
-    <tr>
-        <th>Título</th>
-        <th>Descripción</th>
-        <th>Lenguaje</th>
-        <th>Páginas</th>
-    </tr>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.description}"></td>
-        <td th:text="${book.language}"></td>
-        <td th:text="${book.numberOfPages}"></td>
-        <td>
-            <form th:action="@{/api/books/{id}(id=${book.id})}" method="post">
-                <input type="hidden" name="_method" value="PUT" />
-                <label for="title2">Título:</label>
-                <input type="text" id="title2" name="title" th:value="${book.title}" required>
-                <br>
-                <label for="description2">Descripción:</label>
-                <input type="text" id="description2" name="description" th:value="${book.description}" required>
-                <br>
-                <label for="language2">Lenguaje:</label>
-                <input type="text" id="language2" name="language" th:value="${book.language}" required>
-                <br>
-                <label for="pages2">Número de Páginas:</label>
-                <input type="text" id="pages2" name="pages" th:value="${book.numberOfPages}" required>
-                <input type="submit" value="Guardar cambios">
-            </form>
-        </td>
-    </tr>
-</table>
-<h2>Agregar un nuevo libro</h2>
-<form th:action="@{/api/books}" method="post">
-    <label for="title">Título:</label>
-    <input type="text" id="title" name="title" required>
-    <br>
-    <label for="description">Descripción:</label>
-    <input type="text" id="description" name="description" required>
-    <br>
-    <label for="language">Lenguaje:</label>
-    <input type="text" id="language" name="language" required>
-    <br>
-    <label for="pages">Número de Páginas:</label>
-    <input type="text" id="pages" name="pages" required>
-    <input type="submit" value="Agregar libro">
-</form>
+    <h2 class="table-title">Libros Disponibles</h2>
+    <table>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Lenguaje</th>
+            <th>Páginas</th>
+            <th>Opciones</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.description}"></td>
+            <td th:text="${book.language}"></td>
+            <td th:text="${book.numberOfPages}"></td>
+            <td><button class="edit-btn">Editar</button></td>
+            <td th:class="hidden">
+                <form class="edit-form" th:action="@{/api/books/{id}(id=${book.id})}" method="post">
+                    <input type="hidden" name="_method" value="PUT"/>
+                    <label for="title2">Título:</label>
+                    <input type="text" id="title2" name="title" th:value="${book.title}" required>
+                    <br>
+                    <label for="description2">Descripción:</label>
+                    <textarea type="text" id="description2" name="description" th:value="${book.description}" required></textarea>
+                    <br>
+                    <label for="language2">Lenguaje:</label>
+                    <input type="text" id="language2" name="language" th:value="${book.language}" required>
+                    <br>
+                    <label for="pages2">Número de Páginas:</label>
+                    <input type="text" id="pages2" name="pages" th:value="${book.numberOfPages}" required>
+                    <input class="edit-form-btn" type="submit" value="Guardar cambios">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <button class="add-btn">Agregar Libro</button>
+</div>
+</div>
+<div class="hidden add-form-container">
+    <form class="add-form" th:action="@{/api/books}" method="post">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="description">Descripción:</label>
+        <input type="text" id="description" name="description" required>
+        <br>
+        <label for="language">Lenguaje:</label>
+        <input type="text" id="language" name="language" required>
+        <br>
+        <label for="pages">Número de Páginas:</label>
+        <input type="text" id="pages" name="pages" required>
+        <input class="add-form-btn" type="submit" value="Agregar">
+    </form>
+</div>
 </body>
 </html>
