@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Librería de libros</title>
+    <title>Librería</title>
 </head>
 <body>
-<h1>Librería de libros</h1>
+<h1>Librería</h1>
 
+<h2>Libros Disponibles</h2>
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Lenguaje</th>
+        <th>Páginas</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.description}"></td>
+        <td th:text="${book.language}"></td>
+        <td th:text="${book.numberOfPages}"></td>
+        <td>
+            <form th:action="@{/api/books/{id}(id=${book.id})}" method="post">
+                <input type="hidden" name="_method" value="PUT" />
+                <label for="title2">Título:</label>
+                <input type="text" id="title2" name="title" th:value="${book.title}" required>
+                <br>
+                <label for="description2">Descripción:</label>
+                <input type="text" id="description2" name="description" th:value="${book.description}" required>
+                <br>
+                <label for="language2">Lenguaje:</label>
+                <input type="text" id="language2" name="language" th:value="${book.language}" required>
+                <br>
+                <label for="pages2">Número de Páginas:</label>
+                <input type="text" id="pages2" name="pages" th:value="${book.numberOfPages}" required>
+                <input type="submit" value="Guardar cambios">
+            </form>
+        </td>
+    </tr>
+</table>
 <h2>Agregar un nuevo libro</h2>
 <form th:action="@{/api/books}" method="post">
     <label for="title">Título:</label>
@@ -22,21 +54,5 @@
     <input type="text" id="pages" name="pages" required>
     <input type="submit" value="Agregar libro">
 </form>
-
-<h2>Lista de libros</h2>
-<table>
-    <tr>
-        <th>Título</th>
-        <th>Descripción</th>
-        <th>Lenguaje</th>
-        <th>Páginas</th>
-    </tr>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.title}"></td>
-        <td th:text="${book.description}"></td>
-        <td th:text="${book.language}"></td>
-        <td th:text="${book.numberOfPages}"></td>
-    </tr>
-</table>
 </body>
 </html>

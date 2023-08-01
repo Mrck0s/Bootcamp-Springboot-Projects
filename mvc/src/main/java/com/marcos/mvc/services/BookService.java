@@ -19,26 +19,24 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Books createBook(Books b) {
-        return bookRepository.save(b);
+    public void createBook(Books b) {
+        bookRepository.save(b);
     }
 
     public Books findBook(Long id) {
         Optional<Books> optionalBook = bookRepository.findById(id);
         return optionalBook.orElse(null);
     }
-    public Books updateBook(Long id, String title, String desc, String lang, Integer numOfPages) {
-        // Buscar el libro por id
-        Optional<Books> optionalBook = bookRepository.findById(id);
-        if (optionalBook.isPresent()) {
-            Books book = optionalBook.get();
-            book.setTitle(title);
-            book.setDescription(desc);
-            book.setLanguage(lang);
-            book.setNumberOfPages(numOfPages);
-            return bookRepository.save(book);
-        } else {
-            return null;
+    public void updateBook(Books book) {
+        Optional<Books> existingBook = bookRepository.findById(book.getId());
+        if (existingBook.isPresent()) {
+            Books updatedBook = existingBook.get();
+            updatedBook.setTitle(book.getTitle());
+            updatedBook.setDescription(book.getDescription());
+            updatedBook.setLanguage(book.getLanguage());
+            updatedBook.setNumberOfPages(book.getNumberOfPages());
+
+            bookRepository.save(updatedBook);
         }
     }
 

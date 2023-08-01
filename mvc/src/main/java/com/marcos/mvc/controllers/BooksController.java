@@ -5,8 +5,6 @@ import com.marcos.mvc.repositories.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,11 +22,5 @@ public class BooksController {
         model.addAttribute("books", books);
         model.addAttribute("book", new Books());
         return "index";
-    }
-
-    @PostMapping("/add")
-    public String addBook(@ModelAttribute("book") Books book) {
-        bookRepository.save(book);
-        return "redirect:/";
     }
 }

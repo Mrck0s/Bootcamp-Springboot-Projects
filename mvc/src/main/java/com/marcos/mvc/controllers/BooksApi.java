@@ -2,11 +2,13 @@ package com.marcos.mvc.controllers;
 
 import com.marcos.mvc.models.Books;
 import com.marcos.mvc.services.BookService;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/api/books")
 public class BooksApi {
     private final BookService bookService;
@@ -21,17 +23,41 @@ public class BooksApi {
     }
 
     @PostMapping
-    public Books create(@RequestParam(value = "title") String title,
+    public String create(@RequestParam(value = "title") String title,
                         @RequestParam(value = "description") String desc,
                         @RequestParam(value = "language") String lang,
                         @RequestParam(value = "pages") Integer numOfPages) {
         Books book = new Books(title, desc, lang, numOfPages);
-        return bookService.createBook(book);
+        bookService.createBook(book);
+        return "redirect:/";
     }
 
     @GetMapping("/{id}")
     public Books show(@PathVariable("id") Long id) {
+        return bookService.findBook(id);
+    }
+    @PostMapping("/{id}")
+    public String update(@PathVariable("id") Long id,
+                        @RequestParam(value = "title") String title,
+                        @RequestParam(value = "description") String desc,
+                        @RequestParam(value = "language") String lang,
+                        @RequestParam(value = "pages") Integer numOfPages) {
         Books book = bookService.findBook(id);
-        return book;
+
+        if (book != null) {
+            book.setTitle(title);
+            book.setDescription(desc);
+            book.setLanguage(lang);
+            book.setNumberOfPages(numOfPages);
+            bookService.updateBook(book);
+            return "redirect:/";
+        } else {
+            return null;
+        }
+    }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id) {
+        bookService.deleteBook(id);
     }
 }
