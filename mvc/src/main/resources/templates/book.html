@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.title}"></title>
+    <link rel="stylesheet" href="/book.css">
+</head>
+<body>
+<div class="info-container">
+  <h2 class="book-title" th:text="${book.title}"></h2>
+  <p class="book-description">Descripcion:</p>
+    <p class="book-description-text" th:text="${book.description}"></p>
+    <p class="book-language">Lenguajes disponibles: <span th:text="${book.language}"></span></p>
+    <p class="book-pages">Numero de páginas: <span th:text="${book.numberOfPages}"></span></p>
+</div>
+
+</body>
+</html>

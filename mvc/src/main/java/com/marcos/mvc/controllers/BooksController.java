@@ -31,5 +31,11 @@ public class BooksController {
         bookService.deleteBook(id);
         return "redirect:/";
     }
+    @RequestMapping("/books/{id}")
+    public String showBook(@PathVariable("id") Long id, Model model) {
+        Books book = bookService.findBook(id);
+        model.addAttribute("book", book);
+        return "book";
+    }
 }
 

@@ -31,10 +31,7 @@ public class BooksApi {
         return "redirect:/";
     }
 
-    @GetMapping("/{id}")
-    public Books show(@PathVariable("id") Long id) {
-        return bookService.findBook(id);
-    }
+
     @PostMapping("/{id}")
     public String update(@PathVariable("id") Long id,
                         @RequestParam(value = "title") String title,

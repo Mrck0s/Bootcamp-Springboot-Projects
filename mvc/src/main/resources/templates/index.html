@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Librería</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -24,7 +24,10 @@
             <td th:text="${book.description}"></td>
             <td th:text="${book.language}"></td>
             <td th:text="${book.numberOfPages}"></td>
-            <td><button class="edit-btn">Editar</button></td>
+            <td><button class="edit-btn">Editar</button>
+                <form th:action="@{/books/{id}(id=${book.id})}" method="get">
+                    <input class="details-btn" type="submit" value="Ver Detalles">
+                </form></td>
             <td th:class="hidden">
                 <form class="edit-form" th:action="@{/api/books/{id}(id=${book.id})}" method="post">
                     <input type="hidden" name="_method" value="PUT"/>
