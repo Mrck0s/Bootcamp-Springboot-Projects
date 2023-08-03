@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Editar Lenguaje</title>
+  <link type="text/css" rel="stylesheet" href="/edit.css">
+</head>
+<body>
+<h2>Editar Lenguaje</h2>
+<form th:action="@{/languages/edit/{id}(id=${language.id})}" method="post" th:object="${language}">
+  <input type="hidden"  th:field="*{id}"/>
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name" th:field="*{name}" required minlength="2" maxlength="20"/><br/>
+  <label for="creator">Creador:</label>
+  <input type="text" id="creator" name="creator" th:field="*{creator}" required minlength="2" maxlength="20"/><br/>
+  <label for="currentVersion">Version Actual:</label>
+  <input type="text" id="currentVersion" name="currentVersion" th:field="*{currentVersion}" required/><br/>
+  <button type="submit">Guardar</button>
+</form>
+<form th:action="@{/languages/{id}(id=${language.id})}" method="post" onsubmit="return confirm('Seguro que deseas eliminar este lenguaje?')">
+  <input type="hidden" name="_method" value="delete"/>
+  <input class="delete-btn" type="submit" value="Delete"/>
+</form>
+<form th:action="@{/languages}" method="get">
+  <input class="dashboard-btn" type="submit" value="Dashboard"/>
+</form>
+</body>
+</html>
