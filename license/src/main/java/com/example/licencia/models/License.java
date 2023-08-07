@@ -1,15 +1,12 @@
-package com.marcos.license.models;
+package com.example.licencia.models;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name="licenses")
+@Table(name = "License")
 public class License {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,16 +14,26 @@ public class License {
     private Date expirationDate;
     private String state;
     @Column(updatable = false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private LocalDateTime createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private LocalDateTime updatedAt;
+    private Date createdAt;
+    private Date updatedAt;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "persons_id")
+    private Persons person;
 
-    public License() {
+    public License(){
 
+    }
+
+    public License(Long id, String number, Date expirationDate, String state){
+        this.id = id;
+        this.number = number;
+        this.expirationDate = expirationDate;
+        this.state = state;
+    }
+
+    public void setIdAndFormatNumber(Long id) {
+        this.id = id;
+        this.number = String.format("%06d", id);
     }
 
     public Long getId() {
@@ -61,27 +68,27 @@ public class License {
         this.state = state;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Person getPerson() {
+    public Persons getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Persons person) {
         this.person = person;
     }
 }

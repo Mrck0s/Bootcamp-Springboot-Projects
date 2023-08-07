@@ -1,10 +1,10 @@
-package com.marcos.license;
+package com.example.licencia;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LicenseApplicationTests {
+class LicenciaApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,13 +1,13 @@
-package com.marcos.license;
+package com.example.licencia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LicenseApplication {
+public class LicenciaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LicenseApplication.class, args);
+        SpringApplication.run(LicenciaApplication.class, args);
     }
 
 }

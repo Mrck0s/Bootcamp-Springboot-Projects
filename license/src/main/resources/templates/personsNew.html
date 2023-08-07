@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/personsNew.css" rel="stylesheet">
+    <title>Nuevas personas</title>
+</head>
+<body>
+<form th:action="@{/persons/new}" method="post" name="form" th:obect="newPersons">
+    <label>First Name
+        <input type="text" name="first" th:fields="*{newPersons.first_name}">
+    </label>
+    <label>Last Name
+        <input type="text" name="last" th:fields="*{newPersons.last_name}">
+    </label>
+    <button type="submit" name="persons">Crear</button>
+</form>
+<a th:href="@{/}">Volver</a>
+</body>
+</html>

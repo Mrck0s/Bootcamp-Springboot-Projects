@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/licensesNew.css" rel="stylesheet">
+ <title>Nuevas licencias</title>
+</head>
+<body>
+<h1>Crear nuevas licencias</h1>
+<form th:action="@{/licenses/new}" th:object="${newLicenses}" method="post">
+    <label for="personName">Person Name:</label>
+    <select id="personName" name="personName">
+        <option th:each="person : ${allPersons}" th:value="${person.id}" th:text="${person.first_name + ' ' + person.last_name}"></option>
+    </select>
+    <br/>
+    <label for="state">Estado:</label>
+    <input type="text" id="state" name="state" required/>
+    <br/>
+    <label for="date">Fecha:</label>
+    <input type="date" id="date" name="date" required/>
+    <br/>
+    <input type="submit" value="Crear"/>
+</form>
+<a th:href="@{/}">Volver</a>
+</body>
+</html>

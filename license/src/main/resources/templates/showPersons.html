@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/showPersons.css" rel="stylesheet">
+    <title>PersonsLicenses</title>
+</head>
+<body>
+<h1>Persona</h1>
+<p><strong>First Name:</strong> <span th:text="${showPerson.first_name}"></span></p>
+<p><strong>Last Name:</strong> <span th:text="${showPerson.last_name}"></span></p>
+
+<h2>Licencia</h2>
+<p th:if="${personLicense != null}">
+    <strong>License Number:</strong> <span th:text="${personLicense.number}"></span>
+</p>
+<p th:if="${personLicense != null}">
+    <strong>State:</strong> <span th:text="${personLicense.state}"></span>
+</p>
+<p th:if="${personLicense != null}">
+    <strong>Expiration Date:</strong> <span th:text="${personLicense.expirationDate}"></span>
+</p>
+
+</body>
+</html>

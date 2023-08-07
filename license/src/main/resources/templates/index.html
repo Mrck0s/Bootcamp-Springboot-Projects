@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/index.css" rel="stylesheet">
+    <title>Pagina principal</title>
+</head>
+<body>
+<h1>Bienvenido a Licencia de manejo</h1>
+<a th:href="@{/persons/new}">Agregar tus datos</a>
+<a th:href="@{/licenses/new}">Crear licencia</a>
+
+<h2>Informacion</h2>
+<table>
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>License Number</th>
+        <th>State</th>
+        <th>Expiration Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${allPersons}">
+        <td><a th:href="@{/persons/{id}(id=${person.id})}"><span th:text="${person.first_name}"></span></a></td>
+        <td th:text="${person.last_name}"></td>
+        <td th:if="${person.license != null}" th:text="${person.license.number}">N/A</td>
+        <td th:if="${person.license != null}" th:text="${person.license.state}">N/A</td>
+        <td th:if="${person.license != null}" th:text="${person.license.expirationDate}">N/A</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
