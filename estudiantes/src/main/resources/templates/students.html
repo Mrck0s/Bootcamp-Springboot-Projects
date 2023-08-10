@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevos estudiantes</title>
+    <link rel="stylesheet" href="/students.css">
+</head>
+<body>
+
+<h1>Agregar estudiantes</h1>
+
+<form th:action="@{/students/new}" method="post" th:object="${NuevosEstudiantes}">
+    <label>Nombre:
+        <input type="text" value="first_name" th:field="*{first_name}">
+    </label>
+    <label>Apellido:
+        <input type="text" value="last_name" th:field="*{last_name}" >
+    </label>
+    <label>Edad:
+        <input type="number" value="age" th:field="*{age}">
+    </label>
+    <button type="submit">Crear</button>
+</form>
+
+</body>
+</html>

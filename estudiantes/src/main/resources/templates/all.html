@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla</title>
+    <link rel="stylesheet" href="/all.css">
+</head>
+<body>
+
+<h2>Informacion</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Direccion</th>
+        <th>Ciudad</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="estudiante : ${TodosLosEstudiantes}">
+        <td th:text="${estudiante.first_name}"></td>
+        <td th:text="${estudiante.last_name}"></td>
+        <td th:if="${estudiante.contacto != null}" th:text="${estudiante.contacto.address}">N/A</td>
+        <td th:if="${estudiante.contacto != null}" th:text="${estudiante.contacto.city}">N/A</td>
+        <td th:if="${estudiante.contacto != null}" th:text="${estudiante.contacto.state}">N/A</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
