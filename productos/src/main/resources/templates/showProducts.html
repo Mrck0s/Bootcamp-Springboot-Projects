@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/showProducts.css" rel="stylesheet">
+    <title th:text="${productos.nombre}"></title>
+</head>
+<body>
+<h1 th:text="${productos.nombre}"></h1>
+<h3>Categorias: </h3>
+<ul>
+    <li th:each="categoria : ${productos.categorias}">
+        <span th:text="${categoria.nombre}"></span>
+    </li>
+</ul>
+
+<h4>Agregar categoria</h4>
+<form th:action="@{/products/{id}(id=${productos.id})}" method="post">
+    <input type="hidden" th:name="producto.id" th:value="${productos.id}">
+    <select th:name="categoriaId">
+        <option class="options" th:each="categoria : ${todasLasCategorias}"
+                th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+    </select>
+    <button type="submit">Agregar</button>
+</form>
+<a href="/">Volver</a>
+</body>
+</html>

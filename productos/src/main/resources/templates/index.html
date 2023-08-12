@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/index.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+
+<h2>Productos:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>N° Categorías</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="producto : ${listaProductos}">
+        <td th:text="${producto.id}"></td>
+        <td><a th:href="@{/products/{id}(id=${producto.id})}"><span th:text="${producto.nombre}"></span></a></td>
+        <td th:text="${producto.descripcion}"></td>
+        <td th:text="${producto.precio}"></td>
+        <td th:text="${producto.cantidadCategorias}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Categorías:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cantidad de Productos</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categoria : ${listaCategorias}">
+        <td th:text="${categoria.id}"></td>
+        <td><a th:href="@{/categories/{id}(id=${categoria.id})}"><span th:text="${categoria.nombre}"></span></a></td>
+        <td th:text="${categoria.cantidadProductos}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="buttons">
+<a th:href="@{/products/new}">Nuevo producto</a>
+<a th:href="@{/categories/new}">Nueva categoria</a>
+</div>
+
+</body>
+</html>

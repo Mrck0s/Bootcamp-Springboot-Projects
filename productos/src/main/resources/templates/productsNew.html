@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/productsNew.css" rel="stylesheet">
+    <title>Agregar productos</title>
+</head>
+<body>
+
+<h1>Agregar producto</h1>
+
+<form th:action="@{/products/new}" method="post" th:object="${nuevoProducto}">
+    <label>Nombre:
+        <input type="text" th:field="*{nombre}">
+    </label>
+    <label>Descripcion:
+        <input type="text" th:field="*{descripcion}">
+    </label>
+    <label>Precio:
+        <input type="text" th:field="*{precio}">
+    </label>
+    <button type="submit">Crear</button>
+</form>
+
+<a href="/">Volver</a>
+</body>
+</html>
